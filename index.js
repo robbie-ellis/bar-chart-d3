@@ -11,12 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
         dates.push(el[0]);
         values.push(el[1]);
       });
+      
+      const w = 500;
+      const h = 100;
 
-      d3.select('body').selectAll('div')
-        .data(dataSet)
+      const svg = d3.select('body')
+                    .append('svg')
+                    .attr('height', h)
+                    .attr('width', w);
+
+      svg.selectAll('rect')
+        .data(values)
         .enter()
-        .append('div')
-        .attr("class", "bar");
+        .append('rect')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', 25)
+        .attr('height', 100);
+        
+      
       
     });
     
