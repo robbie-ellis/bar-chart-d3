@@ -1,1 +1,5 @@
-"/* Style me */" 
+.bar {
+  background-color: purple;
+  width: 25px;
+  height: 25px;
+}
