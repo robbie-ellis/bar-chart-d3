@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         values.push(el[1]);
       });
       
-      const w = 500;
-      const h = 100;
+      const w = 850;
+      const h = 400;
 
       const svg = d3.select('body')
                     .append('svg')
@@ -24,13 +24,35 @@ document.addEventListener('DOMContentLoaded', () => {
         .data(values)
         .enter()
         .append('rect')
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('width', 25)
-        .attr('height', 100);
+        .attr('id', (d, i) => i)
+        .attr('class', 'bar')
+        .attr('x', (d, i) => i * 3)
+        .attr('y', (d) => h - d * 0.02)
+        .attr('width', 3)
+        .attr('height', (d) => d * 0.02)
+        .attr('fill', 'purple')
+        .attr('data-gdp', (d) => d)
+        .data(dates)
+        .attr('data-date', (d) => d);
         
-      
-      
+      /* For testing  
+      const el = document.getElementsByClassName('bar')[0];
+      const output = el.getAttribute('data-gdp');
+      console.log(output);
+      */
+      const showToolTip = (e) => {
+        console.log("made it this far");
+        /*
+        d3.select('#tool-tip')
+        .data(dates);
+        */
+      }
+
+      const bars = document.getElementsByClassName('bar');
+      console.log(bars.length);
+      for (let i = 0; i < bars.length; i++) {
+        bars[i].addEventListener('mouseover', showToolTip);
+      };
     });
     
     

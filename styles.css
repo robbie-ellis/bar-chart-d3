@@ -1,9 +1,11 @@
-.bar {
-  background-color: purple;
-  width: 25px;
-  height: 25px;
-  display: inline-block;
-  margin: 2px;
+.bar:hover {
+  fill: lightcoral;
+}
+
+.tool-tip-display {
+  height: 50;
+  width: 80;
+  background-color: blue;
 }
 
 
