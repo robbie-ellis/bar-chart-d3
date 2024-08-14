@@ -11,14 +11,37 @@ document.addEventListener('DOMContentLoaded', () => {
         dates.push(el[0]);
         values.push(el[1]);
       });
-      
-      const w = 850;
-      const h = 400;
+
+      /*
+      The following removes everything except the
+      year from dates so that the min and max 
+      functions in xScale work properly
+      */
+      let years = [];
+      dates.forEach((el, i) => {
+        years[i] = el.substring(0, 4); 
+      });
+    
+      const w = 900;
+      const h = 600;
+      const padding = 40;
+
+      const xScale = d3.scaleLinear()
+        .domain([d3.min(years), d3.max(years)])
+        .range([padding, w - padding]);
+
+      const yScale = d3.scaleLinear()
+        .domain([d3.min(values), d3.max(values)])
+        .range([h - padding, padding]);
+
+      const rectXScale = d3.scaleLinear()
+        .domain([0, (3 * values.length -3)])
+        .range([padding, w - padding]);
 
       const svg = d3.select('#chart')
-                    .append('svg')
-                    .attr('height', h)
-                    .attr('width', w);
+        .append('svg')
+        .attr('height', h)
+        .attr('width', w);
 
       svg.selectAll('rect')
         .data(values)
@@ -26,14 +49,28 @@ document.addEventListener('DOMContentLoaded', () => {
         .append('rect')
         .attr('id', (d, i) => i)
         .attr('class', 'bar')
-        .attr('x', (d, i) => i * 3)
-        .attr('y', (d) => h - d * 0.02)
+        .attr('x', (d, i) => rectXScale(i * 3))
+        .attr('y', (d) => yScale(d)) //'- 5' compensates for the 5 added to height
         .attr('width', 3)
-        .attr('height', (d) => d * 0.02)
+        .style('height', (d) => h - padding - yScale(d))//Adding 5 to height to make smaller bars more visible
         .attr('fill', 'purple')
         .attr('data-gdp', (d) => d)
         .data(dates)
         .attr('data-date', (d) => d);
+
+      const xAxis = d3.axisBottom(xScale)
+        .tickFormat(d3.format('d'));
+      const yAxis = d3.axisLeft(yScale);       
+
+      svg.append('g')
+        .attr('transform', 'translate(0, ' + (h - padding) + ')')
+        .attr('id', 'x-axis')
+        .call(xAxis);
+
+      svg.append('g')
+        .attr('transform', 'translate(' + padding + ', 0)')
+        .attr('id', 'y-axis')
+        .call(yAxis);
 
       const toolTip = d3.select('#tooltip'); 
 
@@ -73,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const bars = document.getElementsByClassName('bar');
-      console.log(bars.length);
       for (let i = 0; i < bars.length; i++) {
         bars[i].addEventListener('mouseover', showToolTip);
         bars[i].addEventListener('mouseout', hideToolTip);
