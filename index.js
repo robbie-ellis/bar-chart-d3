@@ -41,7 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const svg = d3.select('#chart')
         .append('svg')
         .attr('height', h)
-        .attr('width', w);
+        .attr('width', w)
+        .style('background', 'linear-gradient(blue, navy)')
+        .style('border-radius', '10px')
+        .style('box-shadow', '10px 10px 5px 0px rgba(0, 0, 0, 0.5)');
 
       svg.selectAll('rect')
         .data(values)
@@ -65,19 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
       svg.append('g')
         .attr('transform', 'translate(0, ' + (h - padding) + ')')
         .attr('id', 'x-axis')
-        .call(xAxis);
+        .call(xAxis)
+        .attr('color', 'coral');
 
       svg.append('g')
         .attr('transform', 'translate(' + padding + ', 0)')
         .attr('id', 'y-axis')
-        .call(yAxis);
+        .call(yAxis)
+        .attr('color', 'coral');
 
       const toolTip = d3.select('#tooltip'); 
 
       const showToolTip = function() {
         toolTip.attr('data-date', d3.select(this).attr('data-date'));
         const dateFull = toolTip.attr('data-date');
-        console.log(dateFull);
         const gdp = d3.select(this).attr('data-gdp');
         const barX = parseInt(d3.select(this).attr('x'), 10);
         let date;
@@ -101,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         toolTip.style('opacity', 0.8);
-        toolTip.style('left', (barX - 30) + 'px');
+        //toolTip.style('transform', 'translate(${barX}px, 250px)')
+        toolTip.style('left', (barX + 50) + 'px');
+        //toolTip.attr('x', )
         toolTip.html(`${date}<br>$${gdp}B`);
       };
 
