@@ -20,14 +20,8 @@ h1, h2 {
   width: 80px;
   height: 40px;
   background-color: lightcoral;
-  z-index: 9999;
-  opacity: 0;
-  position: absolute;
-  top: 250px;
-  text-align: center;
-  padding-top: 4px;
-  border-radius: 10px;
 }
+
 
 
 
