@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .append('svg')
         .attr('height', h)
         .attr('width', w)
-        .style('background', 'linear-gradient(blue, navy)')
+        .style('background', 'linear-gradient(lightyellow, lightgreen)')
         .style('border-radius', '10px')
         .style('box-shadow', '10px 10px 5px 0px rgba(0, 0, 0, 0.5)');
 
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .attr('y', (d) => yScale(d))
         .attr('width', 3)
         .style('height', (d) => h - padding - yScale(d))
-        .attr('fill', 'purple')
+        .attr('fill', 'rgb(74, 74, 144)')
         .attr('data-gdp', (d) => d)
         .data(dates)
         .attr('data-date', (d) => d);
@@ -84,13 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .attr('transform', 'translate(0, ' + (h - padding) + ')')
         .attr('id', 'x-axis')
         .call(xAxis)
-        .attr('color', 'coral');
+        .attr('color', 'black');
 
       svg.append('g')
         .attr('transform', 'translate(' + padding + ', 0)')
         .attr('id', 'y-axis')
         .call(yAxis)
-        .attr('color', 'coral');
+        .attr('color', 'black');
 
       // Adds tooltip functionality  
       //const toolTip = d3.select('#tooltip'); 

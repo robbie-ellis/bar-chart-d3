@@ -1,11 +1,11 @@
 body {
-  background: linear-gradient(grey, black);
+  background: linear-gradient(rgb(74, 74, 144), grey);
   
 }
 
 h1, h2 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: navy;
+  color: lightgreen;
 }
 
 .svg-container {
@@ -13,16 +13,5 @@ h1, h2 {
 }
 
 .bar:hover {
-  fill: lightcoral;
+  fill: coral;
 }
-
-.container {
-  width: 80px;
-  height: 40px;
-  background-color: lightcoral;
-}
-
-
-
-
- 
