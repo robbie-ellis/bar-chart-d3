@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json')
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Response for json file was not ok");
+      }
+      return response.json();
+    })
     .then(response => {
       const dataSet = response.data;
       
@@ -153,11 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bars[i].addEventListener('mouseover', showToolTip);
         bars[i].addEventListener('mouseout', hideToolTip);
       };
+    })
+    .catch(error => {
+      console.error("There was a problem fetching json data", error);
     });
-
-    
-    
-    
 });
-
-
