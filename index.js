@@ -158,9 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bars[i].addEventListener('mouseover', showToolTip);
         bars[i].addEventListener('mouseout', hideToolTip);
       };
-
-      d3.select('body')
-        .attr('class', 'body-color');
     })
     .catch(error => {
       console.error("There was a problem fetching json data", error);
