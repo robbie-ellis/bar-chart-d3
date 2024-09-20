@@ -1,7 +1,5 @@
-
-
-body {
-  background-color: rgb(74, 74, 144);
+.body-color {
+  background: linear-gradient(rgb(74, 74, 144), grey);
 }
 
 h1, h2 {
